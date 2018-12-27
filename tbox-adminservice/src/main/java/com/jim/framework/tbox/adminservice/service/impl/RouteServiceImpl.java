@@ -18,11 +18,11 @@ package com.jim.framework.tbox.adminservice.service.impl;
 
 import com.alibaba.dubbo.common.Constants;
 import com.alibaba.dubbo.common.URL;
+import com.jim.framework.tbox.adminservice.api.domain.Route;
+import com.jim.framework.tbox.adminservice.api.dto.AccessDTO;
 import com.jim.framework.tbox.adminservice.service.RouteService;
 import com.jim.framework.tbox.adminservice.util.Pair;
 import com.jim.framework.tbox.adminservice.util.SyncUtils;
-import com.jim.framework.tbox.common.domain.admin.Route;
-import com.jim.framework.tbox.common.dto.admin.AccessDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;

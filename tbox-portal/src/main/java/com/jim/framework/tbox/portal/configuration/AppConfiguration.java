@@ -18,7 +18,7 @@ import com.jim.framework.tbox.portal.service.api.RestTemplateFactory;
 @Configuration
 public class AppConfiguration {
 
-    @Value("${tbox.portal.envs:DEV}")
+    @Value("${tbox.portal.envs:LOCAL,DEV}")
     private String[] supportEnvs;
 
     @Value("${tbox.superAdmin:}")

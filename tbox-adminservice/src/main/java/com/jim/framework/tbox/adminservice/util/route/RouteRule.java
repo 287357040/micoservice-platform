@@ -17,7 +17,7 @@
 package com.jim.framework.tbox.adminservice.util.route;
 
 import com.alibaba.dubbo.common.utils.StringUtils;
-import com.jim.framework.tbox.common.domain.admin.Route;
+import com.jim.framework.tbox.adminservice.api.domain.Route;
 
 import java.text.ParseException;
 import java.util.*;

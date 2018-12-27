@@ -1,7 +1,7 @@
 package com.jim.framework.tbox.portal.config.controller;
 
 import com.jim.framework.tbox.common.api.RestApiHandler;
-import com.jim.framework.tbox.common.dto.config.ItemDTO;
+import com.jim.framework.tbox.configservice.api.dto.ItemDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

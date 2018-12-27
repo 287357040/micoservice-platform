@@ -19,18 +19,23 @@ package com.jim.framework.tbox.adminservice.controller;
 
 import com.alibaba.dubbo.common.Constants;
 import com.alibaba.dubbo.common.utils.StringUtils;
+import com.jim.framework.tbox.adminservice.api.domain.Consumer;
+import com.jim.framework.tbox.adminservice.api.domain.Provider;
+import com.jim.framework.tbox.adminservice.api.dto.ServiceDTO;
+import com.jim.framework.tbox.adminservice.api.dto.ServiceDetailDTO;
 import com.jim.framework.tbox.adminservice.service.ConsumerService;
 import com.jim.framework.tbox.adminservice.service.ProviderService;
-import com.jim.framework.tbox.common.domain.admin.Consumer;
-import com.jim.framework.tbox.common.domain.admin.Provider;
-import com.jim.framework.tbox.common.dto.admin.ServiceDTO;
-import com.jim.framework.tbox.common.dto.admin.ServiceDetailDTO;
+
+import com.jim.framework.tbox.common.TboxResponse;
+import com.jim.framework.tbox.common.exception.ParamValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static com.jim.framework.tbox.common.TboxResponse.fail;
 
 
 @RestController
@@ -49,7 +54,6 @@ public class ServiceController {
     @RequestMapping(value = "/pattern/{pattern}/filter/{filter}", method = RequestMethod.GET)
     public Set<ServiceDTO> searchService(@PathVariable String pattern,
                                          @PathVariable String filter) {
-
         List<Provider> providers = new ArrayList<>();
         if (!filter.contains("*") && !filter.contains("?")) {
             if (pattern.equals("ip")) {

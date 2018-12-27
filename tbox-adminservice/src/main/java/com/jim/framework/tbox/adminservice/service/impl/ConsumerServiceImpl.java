@@ -18,10 +18,10 @@ package com.jim.framework.tbox.adminservice.service.impl;
 
 import com.alibaba.dubbo.common.Constants;
 import com.alibaba.dubbo.common.URL;
+import com.jim.framework.tbox.adminservice.api.domain.Consumer;
 import com.jim.framework.tbox.adminservice.service.ConsumerService;
 import com.jim.framework.tbox.adminservice.util.Pair;
 import com.jim.framework.tbox.adminservice.util.SyncUtils;
-import com.jim.framework.tbox.common.domain.admin.Consumer;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;

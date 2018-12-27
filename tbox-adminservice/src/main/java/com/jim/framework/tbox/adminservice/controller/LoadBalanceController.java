@@ -18,13 +18,13 @@
 package com.jim.framework.tbox.adminservice.controller;
 
 import com.alibaba.dubbo.common.utils.StringUtils;
-import com.jim.framework.tbox.common.exception.ParamValidationException;
-import com.jim.framework.tbox.common.exception.ResourceNotFoundException;
+import com.jim.framework.tbox.adminservice.api.domain.LoadBalance;
+import com.jim.framework.tbox.adminservice.api.domain.Override;
+import com.jim.framework.tbox.adminservice.api.dto.BalancingDTO;
 import com.jim.framework.tbox.adminservice.service.OverrideService;
 import com.jim.framework.tbox.adminservice.util.route.OverrideUtils;
-import com.jim.framework.tbox.common.domain.admin.LoadBalance;
-import com.jim.framework.tbox.common.domain.admin.Override;
-import com.jim.framework.tbox.common.dto.admin.BalancingDTO;
+import com.jim.framework.tbox.common.exception.ParamValidationException;
+import com.jim.framework.tbox.common.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

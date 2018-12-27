@@ -17,13 +17,14 @@
 
 package com.jim.framework.tbox.adminservice.controller;
 
+import com.jim.framework.tbox.adminservice.api.domain.Override;
+import com.jim.framework.tbox.adminservice.api.domain.Weight;
+import com.jim.framework.tbox.adminservice.api.dto.WeightDTO;
 import com.jim.framework.tbox.common.exception.ParamValidationException;
 import com.jim.framework.tbox.common.exception.ResourceNotFoundException;
 import com.jim.framework.tbox.adminservice.service.OverrideService;
 import com.jim.framework.tbox.adminservice.util.route.OverrideUtils;
-import com.jim.framework.tbox.common.domain.admin.Override;
-import com.jim.framework.tbox.common.domain.admin.Weight;
-import com.jim.framework.tbox.common.dto.admin.WeightDTO;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
