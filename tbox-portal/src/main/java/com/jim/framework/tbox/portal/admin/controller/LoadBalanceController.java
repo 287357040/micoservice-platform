@@ -17,8 +17,10 @@
 
 package com.jim.framework.tbox.portal.admin.controller;
 
+import com.jim.framework.tbox.adminservice.api.AdminAPIs;
+import com.jim.framework.tbox.adminservice.api.dto.BalancingDTO;
+import com.jim.framework.tbox.common.TboxResponse;
 import com.jim.framework.tbox.common.api.RestApiHandler;
-import com.jim.framework.tbox.common.dto.admin.BalancingDTO;
 import com.jim.framework.tbox.common.exception.ParamValidationException;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -44,57 +46,35 @@ public class LoadBalanceController {
         if (StringUtils.isEmpty(serviceName)) {
             throw new ParamValidationException("serviceName is Empty!");
         }
-        try {
-            restApiHandler.handle("admin.createLoadbalance", env, null, balancingDTO);
-        } catch (Exception e) {
-
-            return false;
-        }
+        restApiHandler.handle(AdminAPIs.CREATE_LOADBALANCE, env, null, balancingDTO);
         return true;
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public boolean updateLoadbalance(@PathVariable String id, @RequestBody BalancingDTO balancingDTO, @PathVariable String env) throws ParamValidationException {
-        try {
-            restApiHandler.handle("admin.updateLoadbalance", env, new String[]{id}, balancingDTO);
-        } catch (Exception e) {
-
-            return false;
-        }
+        restApiHandler.handle(AdminAPIs.UPDATE_LOADBALANCE, env, new String[]{id}, balancingDTO);
         return true;
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public List<BalancingDTO> searchLoadbalances(@RequestParam(required = false) String service, @PathVariable String env) {
-        try {
-            BalancingDTO[] balancingDTOS = restApiHandler.handle("admin.searchLoadbalances", env, new String[]{service}, BalancingDTO[].class);
-            return Arrays.asList(balancingDTOS);
-        } catch (Exception e) {
-            return null;
-        }
+    public TboxResponse<BalancingDTO[]> searchLoadbalances(@RequestParam(required = false) String service, @PathVariable String env) {
+        BalancingDTO[] balancingDTOS = restApiHandler.handle(AdminAPIs.SEARCH_LOADBALANCES, env, new String[]{service}, BalancingDTO[].class);
+        return TboxResponse.success(balancingDTOS);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public BalancingDTO detailLoadBalance(@PathVariable String id, @PathVariable String env) throws ParamValidationException {
-        try {
-            BalancingDTO balancingDTO = restApiHandler.handle("admin.detailLoadBalance", env, new String[]{id}, BalancingDTO.class);
-            return balancingDTO;
-        } catch (Exception e) {
-            return null;
-        }
+    public TboxResponse<BalancingDTO> detailLoadBalance(@PathVariable String id, @PathVariable String env) throws ParamValidationException {
+        BalancingDTO balancingDTO = restApiHandler.handle(AdminAPIs.DETAIL_LOADBALANCE, env, new String[]{id}, BalancingDTO.class);
+        return TboxResponse.success(balancingDTO);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public boolean deleteLoadBalance(@PathVariable String id, @PathVariable String env) {
         if (id == null) {
-            throw new IllegalArgumentException("Argument of id is null!");
+            throw new ParamValidationException("Argument of id is null!");
         }
-        try {
-            restApiHandler.handle("admin.deleteLoadBalance", env, new String[]{id});
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
+        restApiHandler.handle(AdminAPIs.DELETE_LOADBALANCE, env, new String[]{id});
+        return true;
     }
 
 }

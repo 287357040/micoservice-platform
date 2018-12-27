@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.Properties;
 
 /**
- * For legacy meta server configuration use, i.e. apollo-env.properties
+ * For legacy meta server configuration use, i.e. tbox-env.properties
  */
 public class LegacyRegisterServerProvider implements RegisterServerProvider {
 

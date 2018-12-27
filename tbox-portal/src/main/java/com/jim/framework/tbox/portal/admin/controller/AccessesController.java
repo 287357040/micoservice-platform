@@ -18,10 +18,14 @@ package com.jim.framework.tbox.portal.admin.controller;
 
 import com.alibaba.dubbo.common.logger.Logger;
 import com.alibaba.dubbo.common.logger.LoggerFactory;
+import com.jim.framework.tbox.adminservice.api.AdminAPIs;
+import com.jim.framework.tbox.adminservice.api.dto.AccessDTO;
+import com.jim.framework.tbox.common.TboxResponse;
 import com.jim.framework.tbox.common.api.RestApiHandler;
-import com.jim.framework.tbox.common.dto.admin.AccessDTO;
+import com.jim.framework.tbox.portal.util.RequestArgumentsAssert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
@@ -36,30 +40,34 @@ public class AccessesController {
     private RestApiHandler restApiHandler;
 
     @RequestMapping(method = RequestMethod.GET)
-    public List<AccessDTO> searchAccess(@RequestParam(required = false) String service, @PathVariable String env) {
-        AccessDTO[] accessDTOS = restApiHandler.handle("admin.searchAccess", env, new String[]{service}, AccessDTO[].class);
-        return Arrays.asList(accessDTOS);
+    @ResponseBody
+    public TboxResponse<AccessDTO[]> searchAccess(@RequestParam(required = false) String service, @PathVariable String env) {
+        AccessDTO[] accessDTOS = restApiHandler.handle(AdminAPIs.SEARCH_ACCESS, env, new String[]{service}, AccessDTO[].class);
+        return TboxResponse.success(accessDTOS);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public AccessDTO detailAccess(@PathVariable String id, @PathVariable String env) {
-        AccessDTO accessDTO = restApiHandler.handle("admin.detailAccess", env, new String[]{id}, AccessDTO.class);
-        return accessDTO;
+    public TboxResponse<AccessDTO> detailAccess(@PathVariable String id, @PathVariable String env) {
+        AccessDTO accessDTO = restApiHandler.handle(AdminAPIs.DETAIL_ACCESS, env, new String[]{id}, AccessDTO.class);
+        return TboxResponse.success(accessDTO);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public void deleteAccess(@PathVariable String id, @PathVariable String env) {
-        restApiHandler.handle("admin.deleteAccess", env, new String[]{id});
+    public TboxResponse deleteAccess(@PathVariable String id, @PathVariable String env) {
+        restApiHandler.handle(AdminAPIs.DELETE_ACCESS, env, new String[]{id});
+        return TboxResponse.success(null);
     }
 
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public void createAccess(@RequestBody AccessDTO accessDTO, @PathVariable String env) {
-        restApiHandler.handle("admin.createAccess", env, null, accessDTO);
+    public TboxResponse createAccess(@RequestBody AccessDTO accessDTO, @PathVariable String env) {
+        restApiHandler.handle(AdminAPIs.CREATE_ACCESS, env, null, accessDTO);
+        return TboxResponse.success(null);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public void updateAccess(@PathVariable String id, @RequestBody AccessDTO accessDTO, @PathVariable String env) {
-        restApiHandler.handle("admin.updateAccess", env, new String[]{id}, accessDTO);
+    public TboxResponse updateAccess(@PathVariable String id, @RequestBody AccessDTO accessDTO, @PathVariable String env) {
+        restApiHandler.handle(AdminAPIs.UPDATE_ACCESS, env, new String[]{id}, accessDTO);
+        return TboxResponse.success(null);
     }
 }

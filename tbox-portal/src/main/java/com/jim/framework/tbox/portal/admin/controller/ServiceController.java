@@ -18,20 +18,17 @@
 package com.jim.framework.tbox.portal.admin.controller;
 
 import com.google.common.collect.Sets;
-import com.jim.framework.tbox.common.dto.admin.ServiceDTO;
-import com.jim.framework.tbox.common.dto.admin.ServiceDetailDTO;
+import com.jim.framework.tbox.adminservice.api.AdminAPIs;
+import com.jim.framework.tbox.adminservice.api.dto.ServiceDTO;
+import com.jim.framework.tbox.adminservice.api.dto.ServiceDetailDTO;
+import com.jim.framework.tbox.common.TboxResponse;
 import com.jim.framework.tbox.common.api.RestApiHandler;
-import com.jim.framework.tbox.common.api.RestRequest;
-import com.jim.framework.tbox.core.enums.Env;
-import com.jim.framework.tbox.core.enums.Tool;
-import com.jim.framework.tbox.foundation.RestRequestProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.ws.rs.HttpMethod;
-import java.util.*;
-
-import static org.springframework.http.HttpMethod.GET;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @RestController
@@ -43,15 +40,15 @@ public class ServiceController {
 
 
     @RequestMapping(method = RequestMethod.GET)
-    public Set<ServiceDTO> searchService(@RequestParam String pattern,
-                                         @RequestParam String filter, @PathVariable String env) {
-        ServiceDTO[] services = restApiHandler.handle("admin.searchService", env, new String[]{pattern, filter}, ServiceDTO[].class);
-        return new HashSet<>(Arrays.asList(services));
+    public TboxResponse<Set<ServiceDTO>> searchService(@RequestParam String pattern,
+                                                       @RequestParam String filter, @PathVariable String env) {
+        ServiceDTO[] services = restApiHandler.handle(AdminAPIs.SEARCH_SERVICE, env, new String[]{pattern, filter}, ServiceDTO[].class);
+        return TboxResponse.success(Sets.newHashSet(services));
     }
 
     @RequestMapping(value = "/{service}", method = RequestMethod.GET)
-    public ServiceDetailDTO serviceDetail(@PathVariable String service, @PathVariable String env) {
-        ServiceDetailDTO serviceDetailDTO = restApiHandler.handle("admin.serviceDetail", env, new String[]{service}, ServiceDetailDTO.class);
-        return serviceDetailDTO;
+    public TboxResponse<ServiceDetailDTO> serviceDetail(@PathVariable String service, @PathVariable String env) {
+        ServiceDetailDTO serviceDetailDTO = restApiHandler.handle(AdminAPIs.SERVICE_DETAIL, env, new String[]{service}, ServiceDetailDTO.class);
+        return TboxResponse.success(serviceDetailDTO);
     }
 }

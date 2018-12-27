@@ -17,9 +17,12 @@
 
 package com.jim.framework.tbox.portal.admin.controller;
 
+import com.jim.framework.tbox.adminservice.api.AdminAPIs;
+import com.jim.framework.tbox.adminservice.api.dto.RouteDTO;
+import com.jim.framework.tbox.common.TboxResponse;
 import com.jim.framework.tbox.common.api.RestApiHandler;
-import com.jim.framework.tbox.common.dto.admin.RouteDTO;
 import com.jim.framework.tbox.common.exception.ParamValidationException;
+import com.jim.framework.tbox.common.exception.RestApiException;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,74 +49,47 @@ public class RoutesController {
         if (StringUtils.isEmpty(serviceName) && StringUtils.isEmpty(app)) {
             throw new ParamValidationException("serviceName and app is Empty!");
         }
-        try {
-            restApiHandler.handle("admin.createRule", env, null, routeDTO);
-        } catch (Exception e) {
-            return false;
-        }
+        restApiHandler.handle(AdminAPIs.CREATE_RULE, env, null, routeDTO);
         return true;
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public boolean updateRule(@PathVariable String id, @RequestBody RouteDTO routeDTO, @PathVariable String env) {
-        try {
-            restApiHandler.handle("admin.updateRule", env, new String[]{id}, routeDTO);
-        } catch (Exception e) {
-            return false;
-        }
+        restApiHandler.handle(AdminAPIs.UPDATE_OVERRIDE, env, new String[]{id}, routeDTO);
         return true;
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public List<RouteDTO> searchRoutes(@RequestParam(required = false) String app,
-                                       @RequestParam(required = false) String service, @PathVariable String env) {
-        try {
-            RouteDTO[] result = restApiHandler.handle("admin.searchRoutes", env, new String[]{app, service}, RouteDTO[].class);
-            return Arrays.asList(result);
-        } catch (Exception e) {
-            return null;
-        }
+    public TboxResponse<RouteDTO[]> searchRoutes(@RequestParam(required = false) String app,
+                                                    @RequestParam(required = false) String service, @PathVariable String env) {
+
+        RouteDTO[] result = restApiHandler.handle(AdminAPIs.SEARCH_ROUTES, env, new String[]{app, service}, RouteDTO[].class);
+        return TboxResponse.success(result);
+
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public RouteDTO detailRoute(@PathVariable String id, @PathVariable String env) {
-        try {
-            RouteDTO result = restApiHandler.handle("admin.detailRoute", env, new String[]{id}, RouteDTO.class);
-            return result;
-        } catch (Exception e) {
-            return null;
-        }
+    public TboxResponse<RouteDTO> detailRoute(@PathVariable String id, @PathVariable String env) {
+        RouteDTO result = restApiHandler.handle(AdminAPIs.DETAIL_ROUTE, env, new String[]{id}, RouteDTO.class);
+        return TboxResponse.success(result);
+
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public boolean deleteRoute(@PathVariable String id, @PathVariable String env) {
-        try {
-            restApiHandler.handle("admin.deleteRoute", env, new String[]{id});
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
+        restApiHandler.handle(AdminAPIs.DELETE_ROUTE, env, new String[]{id});
+        return true;
     }
 
     @RequestMapping(value = "/enable/{id}", method = RequestMethod.PUT)
     public boolean enableRoute(@PathVariable String id, @PathVariable String env) {
-
-        try {
-            restApiHandler.handle("admin.enableRoute", env, new String[]{id});
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
+        restApiHandler.handle(AdminAPIs.ENABLE_ROUTE, env, new String[]{id});
+        return true;
     }
 
     @RequestMapping(value = "/disable/{id}", method = RequestMethod.PUT)
     public boolean disableRoute(@PathVariable String id, @PathVariable String env) {
-
-        try {
-            restApiHandler.handle("admin.disableRoute", env, new String[]{id});
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
+        restApiHandler.handle(AdminAPIs.DISABLE_ROUTE, env, new String[]{id});
+        return true;
     }
 }
