@@ -5,7 +5,7 @@
 FROM openjdk:8-jre-alpine
 MAINTAINER ameizi <287357040@qq.com>
 
-ENV VERSION 1.0.0
+ENV VERSION 1.0.0-SNAPSHOT
 
 RUN echo "http://mirrors.aliyun.com/alpine/v3.8/main" > /etc/apk/repositories \
     && echo "http://mirrors.aliyun.com/alpine/v3.8/community" >> /etc/apk/repositories \

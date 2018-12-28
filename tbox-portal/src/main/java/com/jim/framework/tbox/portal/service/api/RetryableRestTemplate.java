@@ -1,12 +1,12 @@
 package com.jim.framework.tbox.portal.service.api;
 
 import com.jim.framework.tbox.common.api.RestRequest;
+import com.jim.framework.tbox.common.exception.RestApiException;
 import com.jim.framework.tbox.core.RegisterDomainConsts;
 import com.jim.framework.tbox.core.dto.ServiceDTO;
 import com.jim.framework.tbox.core.enums.Tool;
 import org.apache.http.conn.ConnectTimeoutException;
 import org.apache.http.conn.HttpHostConnectException;
-import org.hibernate.service.spi.ServiceException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -96,8 +96,8 @@ public class RetryableRestTemplate {
         }
 
         //all admin server down
-        ServiceException e =
-                new ServiceException(String.format("Admin servers are unresponsive. meta server address: %s, admin servers: %s",
+        RestApiException e =
+                new RestApiException(String.format("Admin servers are unresponsive. meta server address: %s, admin servers: %s",
                         RegisterDomainConsts.getDomain(restRequest.getEnv()), services));
         throw e;
     }
@@ -125,8 +125,8 @@ public class RetryableRestTemplate {
             }
         }
         //all admin server down
-        ServiceException e =
-                new ServiceException(String.format("Servers are unresponsive. meta server address: %s, admin servers: %s",
+        RestApiException e =
+                new RestApiException(String.format("Servers are unresponsive. meta server address: %s, admin servers: %s",
                         RegisterDomainConsts.getDomain(request.getEnv()), services));
         throw e;
 
@@ -135,7 +135,7 @@ public class RetryableRestTemplate {
     private List<ServiceDTO> getServices(RestRequest condition) {
         List<ServiceDTO> services = serviceAddressLocator.getServiceList(condition);
         if (CollectionUtils.isEmpty(services)) {
-            ServiceException e = new ServiceException(String.format("No available server."
+            RestApiException e = new RestApiException(String.format("No available server."
                             + " Maybe because of meta server down or all server down. "
                             + "Meta server address: %s"+
                     RegisterDomainConsts.getDomain(condition.getEnv())));

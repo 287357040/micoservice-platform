@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<requests>
-    <!-- Amdim 接口-->
-    <request id="" name="config.testService" httpMethod="GET" url="/config/service/pattern/{pattern}/filter/{filter}"
-             toolType="CONFIG"/>
-</requests>

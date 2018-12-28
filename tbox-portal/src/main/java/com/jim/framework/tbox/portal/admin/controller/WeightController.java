@@ -17,17 +17,15 @@
 
 package com.jim.framework.tbox.portal.admin.controller;
 
+import com.jim.framework.tbox.adminservice.api.AdminAPIs;
+import com.jim.framework.tbox.adminservice.api.dto.WeightDTO;
+import com.jim.framework.tbox.common.TboxResponse;
 import com.jim.framework.tbox.common.api.RestApiHandler;
-import com.jim.framework.tbox.common.api.RestRequest;
-import com.jim.framework.tbox.common.dto.admin.ServiceDTO;
-import com.jim.framework.tbox.common.dto.admin.WeightDTO;
-import com.jim.framework.tbox.foundation.RestRequestProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -44,29 +42,31 @@ public class WeightController {
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public boolean createWeight(@RequestBody WeightDTO weightDTO, @PathVariable String env) {
-        restApiHandler.handle("admin.createWeight",env,null,weightDTO);
+        restApiHandler.handle(AdminAPIs.CREATE_WEIGHT, env, null, weightDTO);
         return true;
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public boolean updateWeight(@PathVariable String id, @RequestBody WeightDTO weightDTO, @PathVariable String env) {
-        restApiHandler.handle("admin.updateWeight",env,new String[]{id}, weightDTO);
+        restApiHandler.handle(AdminAPIs.UPDATE_WEIGHT, env, new String[]{id}, weightDTO);
         return true;
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public List<WeightDTO> searchWeight(@RequestParam(required = false) String service, @PathVariable String env) {
-        WeightDTO[] result = restApiHandler.handle("admin.searchWeight",env,new String[]{service}, WeightDTO[].class);
-        return Arrays.asList(result);
+    public TboxResponse<WeightDTO[]> searchWeight(@RequestParam(required = false) String service, @PathVariable String env) {
+        WeightDTO[] result = restApiHandler.handle(AdminAPIs.SEARCH_WEIGHT, env, new String[]{service}, WeightDTO[].class);
+        return TboxResponse.success(result);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public WeightDTO detailWeight(@PathVariable String id, @PathVariable String env) {
-        return null;
+    public TboxResponse<WeightDTO> detailWeight(@PathVariable String id, @PathVariable String env) {
+        WeightDTO result = restApiHandler.handle(AdminAPIs.SEARCH_WEIGHT, env, new String[]{id}, WeightDTO.class);
+        return TboxResponse.success(result);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public boolean deleteWeight(@PathVariable String id, @PathVariable String env) {
-        return false;
+        restApiHandler.handle(AdminAPIs.DELETE_WEIGHT, env, new String[]{id});
+        return true;
     }
 }

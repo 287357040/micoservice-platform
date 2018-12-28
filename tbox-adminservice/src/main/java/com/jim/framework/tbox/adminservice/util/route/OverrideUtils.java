@@ -17,10 +17,9 @@
 package com.jim.framework.tbox.adminservice.util.route;
 
 import com.alibaba.dubbo.common.utils.StringUtils;
-import com.jim.framework.tbox.common.domain.admin.LoadBalance;
-import com.jim.framework.tbox.common.domain.admin.Weight;
-import com.jim.framework.tbox.common.domain.admin.Override;
-
+import com.jim.framework.tbox.adminservice.api.domain.LoadBalance;
+import com.jim.framework.tbox.adminservice.api.domain.Override;
+import com.jim.framework.tbox.adminservice.api.domain.Weight;
 
 import java.util.ArrayList;
 import java.util.Arrays;

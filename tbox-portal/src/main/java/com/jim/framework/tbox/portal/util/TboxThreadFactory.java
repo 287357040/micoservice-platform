@@ -45,7 +45,7 @@ public class TboxThreadFactory implements ThreadFactory {
         }
       });
       if (alives.size() > 0) {
-        log.info("Alive apollo threads: {}", alives);
+        log.info("Alive tbox threads: {}", alives);
         try {
           TimeUnit.SECONDS.sleep(2);
         } catch (InterruptedException ex) {

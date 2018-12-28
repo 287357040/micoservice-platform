@@ -16,7 +16,7 @@
  */
 package com.jim.framework.tbox.adminservice.service;
 
-import com.jim.framework.tbox.common.domain.admin.Provider;
+import com.jim.framework.tbox.adminservice.api.domain.Provider;
 
 import java.util.List;
 

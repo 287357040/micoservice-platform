@@ -17,10 +17,10 @@
 package com.jim.framework.tbox.adminservice.util.route;
 
 import com.alibaba.dubbo.common.utils.StringUtils;
+import com.jim.framework.tbox.adminservice.api.domain.Override;
+import com.jim.framework.tbox.adminservice.api.domain.Provider;
+import com.jim.framework.tbox.adminservice.api.domain.Route;
 import com.jim.framework.tbox.adminservice.util.Tool;
-import com.jim.framework.tbox.common.domain.admin.Override;
-import com.jim.framework.tbox.common.domain.admin.Provider;
-import com.jim.framework.tbox.common.domain.admin.Route;
 
 import java.net.URI;
 import java.net.URISyntaxException;

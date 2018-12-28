@@ -17,7 +17,7 @@
 package com.jim.framework.tbox.adminservice.service;
 
 
-import com.jim.framework.tbox.common.domain.admin.Override;
+import com.jim.framework.tbox.adminservice.api.domain.Override;
 
 import java.util.List;
 
