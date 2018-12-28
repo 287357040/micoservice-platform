@@ -17,11 +17,11 @@
 
 package com.jim.framework.tbox.adminservice.controller;
 
+import com.jim.framework.tbox.adminservice.api.domain.Route;
+import com.jim.framework.tbox.adminservice.api.dto.RouteDTO;
 import com.jim.framework.tbox.common.exception.ParamValidationException;
 import com.jim.framework.tbox.common.exception.ResourceNotFoundException;
 import com.jim.framework.tbox.adminservice.service.RouteService;
-import com.jim.framework.tbox.common.domain.admin.Route;
-import com.jim.framework.tbox.common.dto.admin.RouteDTO;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

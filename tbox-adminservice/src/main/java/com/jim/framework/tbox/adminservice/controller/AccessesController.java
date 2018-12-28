@@ -1,11 +1,11 @@
 package com.jim.framework.tbox.adminservice.controller;
 
-import com.jim.framework.tbox.common.exception.ParamValidationException;
-import com.jim.framework.tbox.common.exception.ResourceNotFoundException;
+import com.jim.framework.tbox.adminservice.api.domain.Route;
+import com.jim.framework.tbox.adminservice.api.dto.AccessDTO;
 import com.jim.framework.tbox.adminservice.service.RouteService;
 import com.jim.framework.tbox.adminservice.util.route.RouteRule;
-import com.jim.framework.tbox.common.domain.admin.Route;
-import com.jim.framework.tbox.common.dto.admin.AccessDTO;
+import com.jim.framework.tbox.common.exception.ParamValidationException;
+import com.jim.framework.tbox.common.exception.ResourceNotFoundException;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

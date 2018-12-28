@@ -19,10 +19,10 @@ package com.jim.framework.tbox.adminservice.util;
 import com.alibaba.dubbo.common.Constants;
 import com.alibaba.dubbo.common.URL;
 import com.alibaba.dubbo.common.utils.StringUtils;
-import com.jim.framework.tbox.common.domain.admin.Consumer;
-import com.jim.framework.tbox.common.domain.admin.Override;
-import com.jim.framework.tbox.common.domain.admin.Provider;
-import com.jim.framework.tbox.common.domain.admin.Route;
+import com.jim.framework.tbox.adminservice.api.domain.Consumer;
+import com.jim.framework.tbox.adminservice.api.domain.Override;
+import com.jim.framework.tbox.adminservice.api.domain.Provider;
+import com.jim.framework.tbox.adminservice.api.domain.Route;
 
 import java.util.ArrayList;
 import java.util.HashMap;

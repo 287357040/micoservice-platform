@@ -20,14 +20,15 @@ import com.alibaba.dubbo.common.Constants;
 import com.alibaba.dubbo.common.URL;
 import com.alibaba.dubbo.common.utils.NetUtils;
 import com.alibaba.dubbo.common.utils.StringUtils;
+import com.jim.framework.tbox.adminservice.api.domain.Consumer;
+import com.jim.framework.tbox.adminservice.api.domain.Override;
+import com.jim.framework.tbox.adminservice.api.domain.Provider;
+import com.jim.framework.tbox.adminservice.api.domain.Route;
 import com.jim.framework.tbox.adminservice.service.OverrideService;
 import com.jim.framework.tbox.adminservice.service.RouteService;
 import com.jim.framework.tbox.adminservice.util.route.ParseUtils;
 import com.jim.framework.tbox.adminservice.util.route.RouteRule;
-import com.jim.framework.tbox.common.domain.admin.Consumer;
-import com.jim.framework.tbox.common.domain.admin.Override;
-import com.jim.framework.tbox.common.domain.admin.Provider;
-import com.jim.framework.tbox.common.domain.admin.Route;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

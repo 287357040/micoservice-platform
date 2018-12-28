@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<requests>
+    <!-- Amdim 接口-->
+    <request id="" name="admin.searchService" httpMethod="GET" url="/admin/service/pattern/{pattern}/filter/{filter}"
+             toolType="ADMIN"/>
+    <request id="" name="admin.serviceDetail" httpMethod="GET" url="/admin/service/{service}" toolType="ADMIN"/>
+    <!-- loadbanlance-->
+    <request id="" name="admin.createLoadbalance" httpMethod="POST" url="/admin/rules/balancing" toolType="ADMIN"/>
+    <request id="" name="admin.updateLoadbalance" httpMethod="PUT" url="/admin/rules/balancing/{id}" toolType="ADMIN"/>
+    <request id="" name="admin.searchLoadbalances" httpMethod="GET" url="/admin/rules/balancing" toolType="ADMIN"/>
+    <request id="" name="admin.detailLoadBalance" httpMethod="GET" url="/admin/rules/balancing/{id}" toolType="ADMIN"/>
+    <request id="" name="admin.deleteLoadBalance" httpMethod="DELETE" url="/admin/rules/balancing/{id}"
+             toolType="ADMIN"/>
+    <!-- access-->
+    <request id="" name="admin.searchAccess" httpMethod="GET" url="/admin/rules/access" toolType="ADMIN"/>
+    <request id="" name="admin.detailAccess" httpMethod="GET" url="/admin/rules/access/{id}" toolType="ADMIN"/>
+    <request id="" name="admin.createAccess" httpMethod="POST" url="/admin/rules/access"
+             toolType="ADMIN"/>
+    <request id="" name="admin.updateAccess" httpMethod="PUT" url="/admin/rules/access/{id}" toolType="ADMIN"/>
+    <!-- Override-->
+    <request id="" name="admin.createOverride" httpMethod="POST" url="/admin/rules/override" toolType="ADMIN"/>
+    <request id="" name="admin.updateOverride" httpMethod="PUT" url="/admin/rules/override/{id}" toolType="ADMIN"/>
+    <request id="" name="admin.searchOverride" httpMethod="GET" url="/admin/rules/override" toolType="ADMIN"/>
+    <request id="" name="admin.detailOverride" httpMethod="GET" url="/admin/rules/override/{id}" toolType="ADMIN"/>
+    <request id="" name="admin.deleteOverride" httpMethod="DELETE" url="/admin/rules/override/{id}" toolType="ADMIN"/>
+    <request id="" name="admin.enableOverride" httpMethod="PUT" url="/admin/rules/override/enable/{id}"
+             toolType="ADMIN"/>
+    <request id="" name="admin.disableOverride" httpMethod="PUT" url="/admin/rules/override/disable/{id}"
+             toolType="ADMIN"/>
+    <!-- Weight-->
+    <request id="" name="admin.createWeight" httpMethod="POST" url="/admin/rules/weight" toolType="ADMIN"/>
+    <request id="" name="admin.updateWeight" httpMethod="PUT" url="/admin/rules/weight/{id}" toolType="ADMIN"/>
+    <request id="" name="admin.searchWeight" httpMethod="GET" url="/admin/rules/weight" toolType="ADMIN"/>
+    <request id="" name="admin.detailWeight" httpMethod="GET" url="/admin/rules/weight/{id}" toolType="ADMIN"/>
+    <request id="" name="admin.deleteWeight" httpMethod="DELETE" url="/admin/rules/weight/{id}" toolType="ADMIN"/>
+    <!-- Route -->
+    <request id="" name="admin.createRule" httpMethod="POST" url="/admin/rules/route" toolType="ADMIN"/>
+    <request id="" name="admin.updateRule" httpMethod="PUT" url="/admin/rules/route/{id}" toolType="ADMIN"/>
+    <request id="" name="admin.searchRoutes" httpMethod="GET" url="/admin/rules/route/apps/{app}/services/{service}" toolType="ADMIN"/>
+    <request id="" name="admin.detailRoute" httpMethod="GET" url="/admin/rules/route/{id}" toolType="ADMIN"/>
+    <request id="" name="admin.deleteRoute" httpMethod="DELETE" url="/admin/rules/route" toolType="ADMIN"/>
+    <request id="" name="admin.enableRoute" httpMethod="PUT" url="/admin/rules/route/enable/{id}" toolType="ADMIN"/>
+    <request id="" name="admin.disableRoute" httpMethod="PUT" url="/admin/rules/route/disable/{id}" toolType="ADMIN"/>
+
+</requests>

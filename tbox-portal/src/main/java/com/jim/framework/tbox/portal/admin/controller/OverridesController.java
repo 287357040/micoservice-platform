@@ -17,8 +17,10 @@
 
 package com.jim.framework.tbox.portal.admin.controller;
 
+import com.jim.framework.tbox.adminservice.api.AdminAPIs;
+import com.jim.framework.tbox.adminservice.api.dto.OverrideDTO;
+import com.jim.framework.tbox.common.TboxResponse;
 import com.jim.framework.tbox.common.api.RestApiHandler;
-import com.jim.framework.tbox.common.dto.admin.OverrideDTO;
 import com.jim.framework.tbox.common.exception.ParamValidationException;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -45,55 +47,43 @@ public class OverridesController {
         if (StringUtils.isEmpty(serviceName)) {
             throw new ParamValidationException("serviceName is Empty!");
         }
-        restApiHandler.handle("admin.createOverride", env, null, overrideDTO);
+        restApiHandler.handle(AdminAPIs.CREATE_OVERRIDE, env, null, overrideDTO);
         return true;
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public boolean updateOverride(@PathVariable String id, @RequestBody OverrideDTO overrideDTO, @PathVariable String env) {
-        restApiHandler.handle("admin.updateOverride", env, new String[]{id}, overrideDTO);
+        restApiHandler.handle(AdminAPIs.UPDATE_OVERRIDE, env, new String[]{id}, overrideDTO);
         return true;
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public List<OverrideDTO> searchOverride(@RequestParam(required = false) String service, @PathVariable String env) {
-        OverrideDTO[] result = restApiHandler.handle("admin.searchOverride", env, new String[]{service}, OverrideDTO[].class);
-        return Arrays.asList(result);
+    public TboxResponse<OverrideDTO[]> searchOverride(@RequestParam(required = false) String service, @PathVariable String env) {
+        OverrideDTO[] result = restApiHandler.handle(AdminAPIs.SEARCH_OVERRIDE, env, new String[]{service}, OverrideDTO[].class);
+        return TboxResponse.success(result);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public OverrideDTO detailOverride(@PathVariable String id, @PathVariable String env) {
-        OverrideDTO result = restApiHandler.handle("admin.detailOverride", env, new String[]{id}, OverrideDTO.class);
-        return result;
+    public TboxResponse<OverrideDTO> detailOverride(@PathVariable String id, @PathVariable String env) {
+        OverrideDTO result = restApiHandler.handle(AdminAPIs.DETAIL_OVERRIDE, env, new String[]{id}, OverrideDTO.class);
+        return TboxResponse.success(result);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public boolean deleteOverride(@PathVariable String id, @PathVariable String env) {
-        try {
-            restApiHandler.handle("admin.deleteOverride", env, new String[]{id});
-        } catch (Exception e) {
-            return false;
-        }
+        restApiHandler.handle(AdminAPIs.DELETE_OVERRIDE, env, new String[]{id});
         return true;
     }
 
     @RequestMapping(value = "/enable/{id}", method = RequestMethod.PUT)
     public boolean enableRoute(@PathVariable String id, @PathVariable String env) {
-        try {
-            restApiHandler.handle("admin.enableRoute", env, new String[]{id});
-        } catch (Exception e) {
-            return false;
-        }
+        restApiHandler.handle(AdminAPIs.ENABLE_OVERRIDE, env, new String[]{id});
         return true;
     }
 
     @RequestMapping(value = "/disable/{id}", method = RequestMethod.PUT)
     public boolean disableRoute(@PathVariable String id, @PathVariable String env) {
-        try {
-            restApiHandler.handle("admin.disableRoute", env, new String[]{id});
-        } catch (Exception e) {
-            return false;
-        }
+        restApiHandler.handle(AdminAPIs.DISABLE_OVERRIDE, env, new String[]{id});
         return true;
     }
 

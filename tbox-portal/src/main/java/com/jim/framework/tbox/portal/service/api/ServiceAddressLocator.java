@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.PostConstruct;
+import java.text.MessageFormat;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -62,6 +63,9 @@ public class ServiceAddressLocator {
         }
         if (request.getToolType() == Tool.CONFIG) {
             services = configCache.get(request.getEnv());
+        }
+        if (CollectionUtils.isEmpty(services)) {
+            throw new RuntimeException(MessageFormat.format("do not exist services,env:{0},type:{1}", request.getEnv(), request.getToolType()));
         }
         List<ServiceDTO> randomAdminServices = Lists.newArrayList(services);
         Collections.shuffle(randomAdminServices);
